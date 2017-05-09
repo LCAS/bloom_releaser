@@ -52,6 +52,7 @@ ENV REPO="sandbox"
 
 RUN git config --global user.email "lcas-build-farm@googlegroups.com"
 RUN git config --global user.name "LCAS build farm"
+RUN git config --global credential.helper 'cache'
 
 RUN rosdep update
 
