@@ -68,7 +68,7 @@ RUN rosdep update
 
 USER root
 COPY . /home/buildfarm/bloom_releaser
-USER chown -R buildfarm /home/buildfarm/bloom_releaser
+RUN chown -R buildfarm /home/buildfarm/bloom_releaser
 USER buildfarm
 
 #RUN git clone https://github.com/LCAS/bloom_releaser.git
