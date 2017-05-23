@@ -30,6 +30,14 @@ RUN echo "source /opt/ros/kinetic/setup.bash" >> /etc/bash.bashrc
 
 RUN rosdep init
 
+COPY "$GIT_CREDENTIALS" /home/buildfarm/.git-credentials
+RUN chown buildfarm /home/buildfarm/.git-credentials
+RUN chmod 600 /home/buildfarm/.git-credentials
+
+
+
+
+
 USER buildfarm
 
 WORKDIR /home/buildfarm
@@ -62,8 +70,6 @@ RUN rosdep update
 #RUN bloom-release --non-interactive -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 #RUN bloom-release -n -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 
-COPY "$GIT_CREDENTIALS" /home/buildfarm/.git-credentials
-RUN chmod 600 /home/buildfarm/.git-credentials
 
 ENTRYPOINT ["/bin/bash", "-c"]
 
