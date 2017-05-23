@@ -1,5 +1,6 @@
 
 FROM ubuntu:xenial
+ARG GIT_CREDENTIALS
 
 VOLUME ["/var/cache/apt/archives"]
 
