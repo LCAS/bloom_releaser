@@ -38,11 +38,11 @@ RUN echo "index_url: https://raw.githubusercontent.com/lcas/rosdistro/master/ind
 
 RUN git clone https://github.com/LCAS/bloom_releaser.git
 
-ENTRYPOINT ["/bin/bash", "-c"]
-
 ENV BLOOM_DONT_ASK_FOR_DOCS=1
 ENV BLOOM_DONT_ASK_FOR_SOURCE=1
 ENV BLOOM_DONT_ASK_FOR_MAINTENANCE_STATUS=1 
+ENV BLOOM_NO_WEBBROWSER=1
+
 ENV LANG="en_US.UTF-8"
 # This is needed for bloom to work properly:
 ENV PYTHONIOENCODING="UTF-8"
@@ -52,7 +52,7 @@ ENV REPO="sandbox"
 
 RUN git config --global user.email "lcas-build-farm@googlegroups.com"
 RUN git config --global user.name "LCAS build farm"
-RUN git config --global credential.helper 'cache'
+RUN git config --global credential.helper 'store'
 
 RUN rosdep update
 
@@ -61,3 +61,6 @@ RUN rosdep update
 #RUN bloom-release -n -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 
 CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-c"]
+
+
