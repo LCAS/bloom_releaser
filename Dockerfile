@@ -48,6 +48,7 @@ ENV LANG="en_US.UTF-8"
 ENV PYTHONIOENCODING="UTF-8"
 ENV ROS_DISTRO="kinetic"
 ENV REPO="sandbox"
+
 #ENV REPO="https://github.com/lcas/sandbox.git"
 
 RUN git config --global user.email "lcas-build-farm@googlegroups.com"
@@ -56,11 +57,13 @@ RUN git config --global credential.helper 'store'
 
 RUN rosdep update
 
-
 #RUN bloom-release --non-interactive -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 #RUN bloom-release -n -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 
-CMD ["/bin/bash"]
+COPY "$GIT_CREDENTIALS" .git-credentials
+
 ENTRYPOINT ["/bin/bash", "-c"]
+
+CMD ["/home/buildfarm/releaser.sh"]
 
 
