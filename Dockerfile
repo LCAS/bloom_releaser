@@ -65,6 +65,6 @@ COPY "$GIT_CREDENTIALS" .git-credentials
 
 ENTRYPOINT ["/bin/bash", "-c"]
 
-CMD ["/home/buildfarm/releaser.sh"]
+CMD ["/home/buildfarm/bloom_releaser/releaser.sh"]
 
 
