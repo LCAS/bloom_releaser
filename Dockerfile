@@ -45,7 +45,6 @@ WORKDIR /home/buildfarm
 RUN mkdir -p .config/rosdistro/
 RUN echo "index_url: https://raw.githubusercontent.com/lcas/rosdistro/master/index.yaml" > .config/rosdistro/config.yaml
 
-RUN git clone https://github.com/LCAS/bloom_releaser.git
 
 ENV BLOOM_DONT_ASK_FOR_DOCS=1
 ENV BLOOM_DONT_ASK_FOR_SOURCE=1
@@ -66,6 +65,10 @@ RUN git config --global user.name "LCAS build farm"
 RUN git config --global credential.helper 'store'
 
 RUN rosdep update
+
+COPY . bloom_releaser
+#RUN git clone https://github.com/LCAS/bloom_releaser.git
+
 
 #RUN bloom-release --non-interactive -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 #RUN bloom-release -n -t $ROS_DISTRO -r $ROS_DISTRO $REPO
