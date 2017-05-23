@@ -49,6 +49,7 @@ ENV LANG="en_US.UTF-8"
 ENV PYTHONIOENCODING="UTF-8"
 ENV ROS_DISTRO="kinetic"
 ENV REPO="sandbox"
+ENV GIT_ASKPASS=/bin/true
 
 #ENV REPO="https://github.com/lcas/sandbox.git"
 
