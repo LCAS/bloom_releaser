@@ -61,7 +61,8 @@ RUN rosdep update
 #RUN bloom-release --non-interactive -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 #RUN bloom-release -n -t $ROS_DISTRO -r $ROS_DISTRO $REPO
 
-COPY "$GIT_CREDENTIALS" .git-credentials
+COPY "$GIT_CREDENTIALS" /home/buildfarm/.git-credentials
+RUN chmod 600 /home/buildfarm/.git-credentials
 
 ENTRYPOINT ["/bin/bash", "-c"]
 
