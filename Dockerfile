@@ -66,8 +66,11 @@ RUN git config --global credential.helper 'store'
 
 RUN rosdep update
 
+USER root
+COPY . /home/buildfarm/bloom_releaser
+USER chown -R buildfarm /home/buildfarm/bloom_releaser
 USER buildfarm
-COPY . bloom_releaser
+
 #RUN git clone https://github.com/LCAS/bloom_releaser.git
 
 
