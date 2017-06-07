@@ -10,5 +10,7 @@ echo "bump=$BUMP"
 
 #git clone https://gitsvn-nt.oru.se/iliad/software/private_sandbox.git
 
+source /opt/ros/kinetic/setup.bash
+
 $DIR/bloom-rerelease.py --bump $BUMP $REPOSITORY $ROSDISTRO 2>&1
 #bloom-release -y --no-web -t $ROSDISTRO  -r $ROSDISTRO $REPOSITORY
