@@ -1,6 +1,7 @@
 
 FROM ubuntu:xenial
 ARG GIT_CREDENTIALS
+ARG BLOOM_TOKEN
 
 VOLUME ["/var/cache/apt/archives"]
 
@@ -31,8 +32,10 @@ RUN echo "source /opt/ros/kinetic/setup.bash" >> /etc/bash.bashrc
 RUN rosdep init
 
 COPY "$GIT_CREDENTIALS" /home/buildfarm/.git-credentials
-RUN chown buildfarm /home/buildfarm/.git-credentials
-RUN chmod 600 /home/buildfarm/.git-credentials
+RUN mkdir -p /home/buildfarm/.config
+COPY "$BLOOM_TOKEN" /home/buildfarm/.config/bloom
+RUN chown -R buildfarm /home/buildfarm/.git-credentials /home/buildfarm/.config
+RUN chmod 600 /home/buildfarm/.git-credentials /home/buildfarm/.config/bloom
 
 
 
