@@ -24,7 +24,7 @@ RUN echo deb http://10.210.9.154/ubuntu/building xenial main | tee -a /etc/apt/s
 RUN echo deb http://packages.ros.org/ros/ubuntu xenial main | tee -a /etc/apt/sources.list.d/buildfarm.list
 
 RUN apt-get update
-RUN apt-get install -y git ros-kinetic-catkin python-bloom vim nano less diff
+RUN apt-get install -y git ros-kinetic-catkin python-bloom vim nano less
 
 RUN mkdir -p /etc/ros/rosdep/sources.list.d
 RUN curl -o /etc/ros/rosdep/sources.list.d/20-default.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/20-default.list
