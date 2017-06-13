@@ -12,5 +12,10 @@ echo "bump=$BUMP"
 
 source /opt/ros/kinetic/setup.bash
 
-$DIR/bloom-rerelease.py --bump $BUMP $REPOSITORY $ROSDISTRO 2>&1
-bloom-release -y --no-web -t $ROSDISTRO  -r $ROSDISTRO $REPOSITORY
+if [ "$BUMP" ]; then 
+	$DIR/bloom-rerelease.py --bump $BUMP $REPOSITORY $ROSDISTRO 2>&1
+fi
+
+if [ -z "$NOBLOOM" ]; then
+	bloom-release -y --no-web -t $ROSDISTRO  -r $ROSDISTRO $REPOSITORY
+fi

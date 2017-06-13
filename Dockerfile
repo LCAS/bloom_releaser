@@ -2,6 +2,7 @@
 FROM ubuntu:xenial
 ARG GIT_CREDENTIALS
 ARG BLOOM_TOKEN
+LABEL description="bloom-releaser"
 
 VOLUME ["/var/cache/apt/archives"]
 
@@ -23,7 +24,12 @@ RUN echo deb http://10.210.9.154/ubuntu/building xenial main | tee -a /etc/apt/s
 RUN echo deb http://packages.ros.org/ros/ubuntu xenial main | tee -a /etc/apt/sources.list.d/buildfarm.list
 
 RUN apt-get update
-RUN apt-get install -y git ros-kinetic-catkin python-bloom
+RUN apt-get install -y git ros-kinetic-catkin python-bloom vim nano less diff
+
+RUN mkdir -p /etc/ros/rosdep/sources.list.d
+RUN curl -o /etc/ros/rosdep/sources.list.d/20-default.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/20-default.list
+RUN curl -o /etc/ros/rosdep/sources.list.d/50-lcas.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/50-lcas.list
+
 
 #RUN pip3 install jenkinsapi bloom catkin_tools catkin-tools-python urlparse3
 
@@ -84,5 +90,6 @@ USER buildfarm
 ENTRYPOINT ["/bin/bash", "-c"]
 
 CMD ["/home/buildfarm/bloom_releaser/releaser.sh"]
+#CMD ["/bin/bash"]
 
 
