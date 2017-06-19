@@ -26,11 +26,15 @@ RUN echo deb http://packages.ros.org/ros/ubuntu xenial main | tee -a /etc/apt/so
 RUN apt-get update
 RUN apt-get install -y git ros-kinetic-catkin python-bloom vim nano less curl
 
+RUN mkdir -p /etc/ros/rosdep/sources.list.d
+RUN curl -o /etc/ros/rosdep/sources.list.d/20-default.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/20-default.list
+RUN curl -o /etc/ros/rosdep/sources.list.d/50-lcas.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/50-lcas.list
+
 #RUN pip3 install jenkinsapi bloom catkin_tools catkin-tools-python urlparse3
 
 RUN echo "source /opt/ros/kinetic/setup.bash" >> /etc/bash.bashrc
 
-RUN rosdep init
+#RUN rosdep init
 RUN mkdir -p /etc/ros/rosdep/sources.list.d
 RUN curl -o /etc/ros/rosdep/sources.list.d/20-default.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/20-default.list
 RUN curl -o /etc/ros/rosdep/sources.list.d/50-lcas.list https://raw.githubusercontent.com/LCAS/rosdistro/master/rosdep/sources.list.d/50-lcas.list
