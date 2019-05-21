@@ -55,7 +55,7 @@ USER buildfarm
 WORKDIR /home/buildfarm
 
 RUN mkdir -p .config/rosdistro/
-RUN echo "index_url: https://raw.githubusercontent.com/lcas/rosdistro/master/index.yaml" > .config/rosdistro/config.yaml
+RUN echo "index_url: https://raw.githubusercontent.com/lcas/rosdistro/master/index-v4.yaml" > .config/rosdistro/config.yaml
 
 
 ENV BLOOM_DONT_ASK_FOR_DOCS=1
